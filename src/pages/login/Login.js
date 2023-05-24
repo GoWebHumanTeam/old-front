@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
-
 import React from 'react';
 import './Login.css';
 
@@ -27,6 +26,10 @@ function Login() {
         console.log(response.data);
         setName(response.data.name);
         setStudentID(response.data.studentID);
+        <Link to="http://localhost:3000/Home"></Link>
+
+
+    
        })  
        .catch((error)=>{
         console.log(error);
@@ -72,7 +75,7 @@ function Login() {
              <p>studentID: <input type="text" class="form-control" placeholder="StudentID" aria-label="StudentID" required={true} value={studentID} onChange={handleChange_studentID}></input></p>
             
 
-              <Button class="btn btn-outline-primary"  type="submit" > OK</Button>
+              <Button class="btn btn-outline-primary"  type="submit" onClick={getUser}> OK</Button>
 
           </form>
       </div>
