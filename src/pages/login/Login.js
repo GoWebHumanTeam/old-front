@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import { useState, useEffect } from "react";
+
 import {useNavigate} from 'react-router-dom';
 
 import './Login.css';
@@ -15,6 +16,24 @@ function Login() {
 
   const [name, setName] = useState('');
   const [studentID, setStudentID] = useState('');
+
+  async function getUser(){
+      await axios
+       .get(baseUrl + "/")
+       .then((response)=>{
+        console.log(response.data);
+        setName(response.data.name);
+        setStudentID(response.data.studentID);
+        <Link to="http://localhost:3000/Home"></Link>
+
+
+    
+       })  
+       .catch((error)=>{
+        console.log(error);
+       })
+		  
+  }
 
 
   const handleChange_name = (e)=>{
@@ -56,9 +75,9 @@ function Login() {
 
              <p>name: <input type="text" className="form-control" placeholder="name" aria-label="name"  required={true} value={name} onChange={handleChange_name}></input></p>
              <p>studentID: <input type="text" className="form-control" placeholder="StudentID" aria-label="StudentID" required={true} value={studentID} onChange={handleChange_studentID}></input></p>
-            
 
              <Button className="btn btn-outline-primary" onClick={handleSubmit}> OK</Button>
+
 
       </div>
     );
