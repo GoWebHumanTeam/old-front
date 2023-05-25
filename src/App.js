@@ -9,6 +9,7 @@ import OrderCompletePage from './pages/service/OrderCompletePage';
 import Footer from './components/Footer';
 import NoPage from './components/NoPage';
 import Login from './pages/login/Login';
+import OrderList from './pages/service/OrderList';
 
 
 function App() {
@@ -17,12 +18,13 @@ function App() {
       <div style={{ position: "relative", minHeight: "270vh" }}>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="home" element={[<Banner />, <Home />]} />
+          <Route path="login" element={[<Login />]} />
+          <Route path="/" element={[<Banner />, <Home />]} />
           <Route path="service" element={[<Banner />,<Reservation />]} />
           <Route path="introduction" element={[<Banner />, <Introuction />]}/>
           <Route path="result" element={[<Banner />, <OrderCompletePage />]}/>
           <Route path="noResult" element={[<Banner />, <NoPage />]}/>
+          <Route path="orderlist" element={[<Banner />,<OrderList />]} />
         </ Routes>
         <Footer />
       </div>
