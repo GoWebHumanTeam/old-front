@@ -17,7 +17,7 @@ function App() {
       <div style={{ position: "relative", minHeight: "270vh" }}>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={[<Login />]} />
+          <Route path="/" element={<Login />} />
           <Route path="home" element={[<Banner />, <Home />]} />
           <Route path="service" element={[<Banner />,<Reservation />]} />
           <Route path="introduction" element={[<Banner />, <Introuction />]}/>

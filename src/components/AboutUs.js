@@ -2,7 +2,7 @@ import './AboutUs.css';
 
 function AboutUs() {
     return (
-        <div class = "text">
+        <div className = "text">
             <p>Gachon Express is a drone delivery service.</p>
             <p>We aim to revolutionize logistics delivery.</p>
             <br/>
