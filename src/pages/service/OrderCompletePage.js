@@ -26,36 +26,40 @@ function OrderCompletePage() {
   );
 }
 
-const senderName = useSelector((state) => state.order.senderName);
-const senderTel  = useSelector((state) => state.order.senderTel);
-const addressName = useSelector((state) => state.order.addressName);
-const addressTel = useSelector((state) => state.order.addressTel);
-const startingPoint = useSelector((state) => state.order.startingPoint);
-const destination = useSelector((state) => state.order.destination);
-const postDescription = useSelector((state) => state.order.postDescription);
-const weight = useSelector((state) => state.order.weight);
-const quantity = useSelector((state) => state.order.quantity);
 
-axios
-.post(basUrl + "http://localhost:8081/",{
-  senderName:senderName,
-  senderTel:senderTel,
-  addressName: addressName,
-  addressTel: addressTel,
-  startingPoint: startingPoint,
-  destination: destination,
-  postDescription: postDescription,
-  weight : weight,
-  quantity: quantity
-}
-.then((response)=>{
-  console.log(response.data);
-})
-.catch((error)=>{
-  console.log(error);
-})
+
+async function PostData(){
+  const senderName = useSelector((state) => state.order.senderName);
+  const senderTel  = useSelector((state) => state.order.senderTel);
+  const addressName = useSelector((state) => state.order.addressName);
+  const addressTel = useSelector((state) => state.order.addressTel);
+  const startingPoint = useSelector((state) => state.order.startingPoint);
+  const destination = useSelector((state) => state.order.destination);
+  const postDescription = useSelector((state) => state.order.postDescription);
+  const weight = useSelector((state) => state.order.weight);
+  const quantity = useSelector((state) => state.order.quantity);
+
+  await axios
+    .post(basUrl + "/",{
+      senderName:senderName,
+      senderTel:senderTel,
+      addressName: addressName,
+      addressTel: addressTel,
+      startingPoint: startingPoint,
+      destination: destination,
+      postDescription: postDescription,
+      weight : weight,
+      quantity: quantity
+    } 
+    .then((response)=>{
+      console.log(response.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
 )
 
+}
 
 
 function OrderCompleteMessage() {
