@@ -39,33 +39,33 @@ function Banner() {
     
     return (
         <div className="banner">
-                <Link to="http://localhost:3000">
+                <Link to="/">
                     <img className="banner_logo" src= {banner_logo} alt="banner_logo" />
                 </Link>
 
             <div className="banner_search">
                 <input className="banner_searchInput" type="text" onClick = {handleOnSearchInit} onChange={handleOnSearchContents} value={text}/>
                 {valid?
-                (<Link to="http://localhost:3000/introduction"><SearchIcon className="banner_searchIcon" onClick={handleOnSearchBtnClick}/></Link>) :
-                (<Link to="http://localhost:3000/noResult"><SearchIcon className="banner_searchIcon" onClick={handleOnSearchBtnClick}/></Link>)}
+                (<Link to="/introduction"><SearchIcon className="banner_searchIcon" onClick={handleOnSearchBtnClick}/></Link>) :
+                (<Link to="/noResult"><SearchIcon className="banner_searchIcon" onClick={handleOnSearchBtnClick}/></Link>)}
             </div>
             
             <div className="banner_nav">
                 <div className="banner_option">
                     <span className='banner_option_line_1'> Hello. GCU. </span>
                     {isOrder ? 
-                    (<Link to="http://localhost:3000/result"><button className='banner_button-small'> Orders </button></Link>) :
-                    (<Link to="http://localhost:3000/noResult"><button className='banner_button-small'> Orders </button></Link>) }    
+                    (<Link to="/result"><button className='banner_button-small'> Orders </button></Link>) :
+                    (<Link to="/noResult"><button className='banner_button-small'> Orders </button></Link>) }    
                 </div>
 
                 <div className="banner_option">
-                    <Link to="http://localhost:3000/service">
+                    <Link to="/service">
                         <button className='banner_button-big'> Application for Service </button>
                     </Link>
                 </div>
 
                 <div className="banner_option">
-                    <Link to="http://localhost:3000/introduction">
+                    <Link to="/introduction">
                         <button className='banner_button-big'> About Us </button>
                     </Link>
                 </div>
