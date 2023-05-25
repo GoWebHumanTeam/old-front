@@ -8,7 +8,7 @@ function Footer() {
     return (
         <div className="Footer">
             <div className='col_1'>
-                <p class="bold-text">| SITE</p>
+                <p className="bold-text">| SITE</p>
                 <br />
                 <p>Privacy Policy</p>
                 <br />
@@ -19,7 +19,7 @@ function Footer() {
                 <p>Accessibility Statement</p>
             </div>
             <div className='col_2'>
-                <p class="bold-text">| CONTACT US</p>
+                <p className="bold-text">| CONTACT US</p>
                 <br />
                 <p>TEL        031-1234-1122       FAX       031-1233-1231</p>
                 <br />

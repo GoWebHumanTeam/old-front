@@ -10,7 +10,7 @@ function Home() {
         <div className="home">
             <div className="home-container">
                 <img className="home-image" src={background} alt="background"/>    
-                <div class = "home-title">
+                <div className = "home-title">
                     <p>Gachon Express</p>
                 </div>
                 <div className='home-text'>
