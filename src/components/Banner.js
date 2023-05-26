@@ -53,15 +53,9 @@ function Banner() {
             <div className="banner_nav">
                 <div className="banner_option">
                     <span className='banner_option_line_1'> Hello. GCU. </span>
-<<<<<<< HEAD
                     <Link to="http://localhost:3000/orderlist">
                         <button className='banner_button-small'> orders </button>
                     </Link>
-=======
-                    {isOrder ? 
-                    (<Link to="/result"><button className='banner_button-small'> Orders </button></Link>) :
-                    (<Link to="/noResult"><button className='banner_button-small'> Orders </button></Link>) }    
->>>>>>> 211b705e75b767f69946bf73e1a9cf14d2e7febc
                 </div>
 
                 <div className="banner_option">

@@ -17,23 +17,6 @@ function Login() {
   const [name, setName] = useState('');
   const [studentID, setStudentID] = useState('');
 
-  async function getUser(){
-      await axios
-       .get(baseUrl + "/")
-       .then((response)=>{
-        console.log(response.data);
-        setName(response.data.name);
-        setStudentID(response.data.studentID);
-        <Link to="http://localhost:3000/Home"></Link>
-
-
-    
-       })  
-       .catch((error)=>{
-        console.log(error);
-       })
-		  
-  }
 
 
   const handleChange_name = (e)=>{
