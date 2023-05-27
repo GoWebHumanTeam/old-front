@@ -11,7 +11,7 @@ function NoPage() {
       <div className="page">
         <NoOrderMessage />
         <div className="home-button">
-        <Link to="/">
+        <Link to="/home">
         <button className="home-button"><img className ='house' src= {home} alt="home-button"/></button>
         </Link>
         </div>

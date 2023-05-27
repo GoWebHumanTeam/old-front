@@ -1,16 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { inputSenderName, inputSenderTel, inputAddressName, inputAddressTel, 
-         inputStartingPoint, inputDestination, inputPostDescription, inputQuantity, inputWeight, inputDroneId, setIsOrder } from '../../slices/orderSlice';
+import { inputDroneId, setIsOrder } from '../../slices/orderSlice';
 import './Reservation.css';
-import axios from "axios";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import campusmap from '../../imgs/campusmap.jpg';
 import background from '../../imgs/background.jpg';
 import InputAdornment from '@mui/material/InputAdornment';
+import axios from 'axios';
 
 const place = [
     {label:'AI공학관'}, {label:'가천관'}, {label:'공과대학1'}, {label:'공과대학2'}, {label:'교육대학원'}, {label:'바이오나노대학'},
@@ -19,49 +18,63 @@ const place = [
 ];
 
 function Reservation(){
-    const [isClicked, setIsClicked] = useState(false);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [senderName, setSenderName] = useState('');
+    const [senderTel, setSenderTel] = useState('');
+    const [addressName, setAddressName] = useState('');
+    const [addressTel, setAddressTel] = useState('');
+    const [startingPoint, setStartingPoint] = useState('');
+    const [destination, setDestination] = useState('');
+    const [postDescription, setPostDescription] = useState('');
+    const [weight, setWeight] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [selectedDrone, setSelectedDrone] = useState('');
+    const [isClicked, setIsClicked] = useState('');
+
     const handleOnSenderName = (e) => {
-        dispatch(inputSenderName(e.target.value));
+        setSenderName(e.target.value);
     }
 
     const handleOnSenderTel = (e) => {
-        dispatch(inputSenderTel(e.target.value));
+        setSenderTel(e.target.value);
     }
 
     const handleOnAddressName = (e) => {
-        dispatch(inputAddressName(e.target.value));
+        setAddressName(e.target.value);
     }
 
     const handleOnAddressTel = (e) => {
-        dispatch(inputAddressTel(e.target.value));
+        setAddressTel(e.target.value);
     }
 
     const handleOnStartingPoint = (e) => {
-        dispatch(inputStartingPoint(e.target.value));
+        setStartingPoint(e.target.value);
     }
 
     const handleOnDestination = (e) => {
-        dispatch(inputDestination(e.target.value));
+        setDestination(e.target.value);
     }
 
     const handleOnPostDescription = (e) => {
-        dispatch(inputPostDescription(e.target.value));
+        setPostDescription(e.target.value);
     }
 
     const handleOnWeight = (e) => {
-        dispatch(inputWeight(e.target.value));
+        setWeight(e.target.value);
     }
 
     const handleOnQuantity = (e) => {
-        dispatch(inputQuantity(e.target.value));
+        setQuantity(e.target.value);
     }
 
     const droneSelect = (id) => {
         dispatch(inputDroneId(id));
-        setIsClicked(true);
+        setIsClicked(!isClicked);
     }
+
+    // Cliced 넣기..
     
     function ShowOrderInfo() {
         const droneID = useSelector((state) => state.order.droneId);
@@ -79,8 +92,27 @@ function Reservation(){
         );
     }
 
-    const orderCheck = (e) => {
-        dispatch(setIsOrder());
+    const orderCheck = async (e) => {
+        e.preventDefault();
+
+        await axios
+            .post("/api/reservation" , {
+                senderName:senderName,
+                senderTel:senderTel,
+                addressName: addressName,
+                addressTel: addressTel,
+                startingPoint: startingPoint,
+                destination: destination,
+                postDescription: postDescription,
+                weight : weight,
+                quantity: quantity
+            }) 
+            .then(()=>{
+                navigate('/result');
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
     }
 
     return(   
@@ -184,7 +216,7 @@ function Reservation(){
                 <br />
                 <br />
                 <div class="button-container">
-                    <Link to="http://localhost:3000/result">
+                    <Link to="/result">
                         <button className='apply_button' onClick={orderCheck}> Apply </button>
                     </Link>
                 </div>
