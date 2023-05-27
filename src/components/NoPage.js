@@ -8,7 +8,7 @@ function NoPage() {
   return (
     <>
     <div className="center-container">
-      <div className="page">
+      <div className="nopage-page">
         <NoOrderMessage />
         <div className="home-button">
         <Link to="/home">
