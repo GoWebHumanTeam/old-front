@@ -1,17 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom';
 
 import './Login.css';
 
 
 function Login() {
-  const navigate = useNavigate();
-
-    const baseUrl = "http://localhost:8081";
- 
+  const navigate = useNavigate(); 
 
   const [name, setName] = useState('');
   const [studentID, setStudentID] = useState('');
@@ -28,21 +25,23 @@ function Login() {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-
-      await axios
-          .post(baseUrl + "/api/login" ,{
-            name:name,
-            studentid:studentID,
-          })
-          .then((response)=>{
-            console.log(response);
-            navigate('/home');
-          })
-          .catch((error)=>{
-            console.log(error);
-          });
-		  	  
+      const xhr = new XMLHttpRequest();
+xhr.open('POST', 'http://localhost:8000/api/login');
+xhr.withCredentials = true;
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      console.log(response);
+      navigate('/home');
+    } else {
+      console.log('Error:', xhr.status);
+    }
   }
+};
+xhr.send(JSON.stringify({ name: name, studentid: studentID }));}
+
     return (
       <div>
         <br></br>
@@ -58,9 +57,17 @@ function Login() {
             </input>
           </p>
           <p>studentID: 
-            <input type="text" className="form-control" placeholder="StudentID" aria-label="StudentID" required={true} value={studentID} onChange={handleChange_studentID}></input>
+            <input type="text" 
+                   className="form-control" 
+                   placeholder="StudentID" 
+                   aria-label="StudentID" 
+                   required={true} 
+                   value={studentID} 
+                   onChange={handleChange_studentID}> 
+            </input>
           </p>
           <Button className="btn btn-outline-primary" onClick={handleSubmit}> OK</Button>
+          
       </div>
     );
 }

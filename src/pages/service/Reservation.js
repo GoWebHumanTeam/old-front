@@ -18,6 +18,8 @@ const place = [
 ];
 
 function Reservation(){
+    const baseUrl = "http://localhost:8000";
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -94,16 +96,18 @@ function Reservation(){
 
     const orderCheck = async (e) => {
         e.preventDefault();
+        
+        
 
         await axios
-            .post("/api/reservation" , {
-                senderName:senderName,
-                senderTel:senderTel,
-                addressName: addressName,
-                addressTel: addressTel,
-                startingPoint: startingPoint,
+            .post(baseUrl + "/api/reservation/post" , {
+                sender_name:senderName,
+                sender_tel:senderTel,
+                address_name: addressName,
+                address_tel: addressTel,
+                starting_point: startingPoint,
                 destination: destination,
-                postDescription: postDescription,
+                post_description: postDescription,
                 weight : weight,
                 quantity: quantity
             }) 
